@@ -1,0 +1,5 @@
+<app-navbar></app-navbar>
+<div class="global-searchbar" fxLayoutAlign="flex-end" *ngIf="this.router.url !== '/'">
+  <app-organization-search></app-organization-search>
+</div>
+<router-outlet></router-outlet>

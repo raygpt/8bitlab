@@ -1,0 +1,12 @@
+.searchbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+}
+
+.organization-search-title {
+  padding: 1rem;
+  font-size: 2rem;
+}

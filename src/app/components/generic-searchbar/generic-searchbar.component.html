@@ -1,0 +1,20 @@
+<form class="full-width">
+  <mat-form-field appearance="fill" class="autocomplete-form-field">
+    <mat-label>Search</mat-label>
+    <input
+      type="text"
+      [placeholder]="placeholder"
+      matInput
+      [matAutocomplete]="auto"
+      matAutocompletePosition="below"
+      name="search"
+      (input)="pipeSearchEvents($event)"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [panelWidth]="panelWidth">
+      <mat-option *ngFor="let result of filteredResults" (click)="emitSelection(result)">
+        <img *ngIf="displayAvatar" alt="avatar" class="avatar-image" src="{{ result.avatarUrl }}" />
+        <span class="organization-name">{{ result.displayName }}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

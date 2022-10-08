@@ -1,0 +1,43 @@
+.repository-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.avatar-image {
+  vertical-align: middle;
+  max-width: 8rem;
+  max-height: 8rem;
+  border-radius: 50%;
+}
+
+.empty-state {
+  padding: 2rem;
+}
+
+.repository-list-header {
+  padding: 2rem 2rem 0 2rem;
+  align-self: flex-start;
+}
+
+.repository-list-content {
+  padding: 2rem;
+}
+
+.repository-card {
+  width: 30rem;
+  min-height: 15rem;
+  cursor: pointer;
+}
+
+.repository-card-content {
+  min-height: 5rem;
+}
+
+.repository-card-content,
+.repository-card-title,
+.repository-card-footer {
+  padding: 1rem;
+}

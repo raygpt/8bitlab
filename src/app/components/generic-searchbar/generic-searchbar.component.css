@@ -1,0 +1,20 @@
+.full-width {
+  width: 100%;
+}
+
+.autocomplete-form-field {
+  min-width: 20rem;
+}
+
+.avatar-image {
+  vertical-align: middle;
+  max-width: 2rem;
+  max-height: 2rem;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.organization-name {
+  margin-left: 1rem;
+}

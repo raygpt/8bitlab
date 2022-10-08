@@ -1,0 +1,50 @@
+<div class="commit-list-header">
+  <h2 fxLayout="row" fxLayoutAlign="center">
+    <a routerLink="/organization" [queryParams]="{ orgId, orgName, avatarUrl }">
+      {{ this.orgName }}
+    </a>
+    <span class="breadcrumb-divider">/</span>
+    <p>{{ this.repositoryName }}</p>
+  </h2>
+</div>
+<mat-tab-group>
+  <mat-tab label="Commits"> </mat-tab>
+</mat-tab-group>
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+>
+  <div class="commit-list-wrapper" *ngFor="let commit of repositoryCommits">
+    <div fxLayout="row">
+      <div class="commit-details" fxLayout="column">
+        <h2 class="commit-message" (click)="openDiff(commit.sha)">{{ commit.commit.message }}</h2>
+        <h5 class="commit-author">
+          {{ commit.commit.author.name }} on
+          <span class="commit-date">{{ commit.commit.author.date | date: 'longDate' }}</span>
+        </h5>
+      </div>
+      <div class="commit-actions">
+        <mat-button-toggle-group name="commitSha">
+          <mat-button-toggle
+            class="clipboard-toggle"
+            value="{{ commit.sha }}"
+            (change)="copyToClipboard($event.source.value)"
+          >
+            <span class="material-icons" matTooltip="Copy to clipboard"> content_copy </span>
+          </mat-button-toggle>
+          <mat-button-toggle
+            class="diff-toggle"
+            value="{{ commit.sha }}"
+            matTooltip="View commit details"
+            (change)="openDiff(commit.sha)"
+          >
+            {{ commit.sha.slice(0, 7) }}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="repository-list-wrapper">
+  <div class="avatar">
+    <img class="avatar-image" alt="Organization avatar" src="{{ this.avatarUrl }}" />
+  </div>
+  <div *ngIf="!organizationRepositories.length">
+    <h2 class="empty-state">Sorry, no repositories could be found.</h2>
+  </div>
+  <div *ngIf="organizationRepositories.length">
+    <mat-tab-group>
+      <mat-tab label="Most starred repositories"> </mat-tab>
+    </mat-tab-group>
+    <mat-paginator
+      [length]="totalRepos"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      (page)="pageChanged($event.pageIndex, $event.pageSize)"
+      [pageSizeOptions]="[30, 100]"
+    >
+    </mat-paginator>
+    <div class="repository-list-content" fxLayout="row wrap" fxLayoutGap="1rem grid">
+      <div
+        *ngFor="let repository of organizationRepositories"
+        fxFlex="50%"
+        fxFlex.xs="100%"
+        fxFlex.sm="100%"
+      >
+        <mat-card
+          class="mat-elevation-z4 repository-card"
+          (click)="selectRepository(repository.name)"
+        >
+          <mat-card-title class="repository-card-title">
+            {{ repository.name }}
+          </mat-card-title>
+          <mat-card-content class="repository-card-content">
+            <p>{{ repository.description }}</p>
+          </mat-card-content>
+          <mat-card-footer class="repository-card-footer">
+            <mat-chip-list>
+              <mat-chip color="primary" selected *ngIf="repository.language"
+                >{{ repository.language }}
+              </mat-chip>
+              <mat-chip color="accent" selected>
+                <span class="material-icons" *ngIf="repository.stargazers_count">star</span>
+                {{ repository.stargazers_count }}
+              </mat-chip>
+              <mat-chip>
+                <span class="material-icons" *ngIf="repository.forks_count">fork_right</span>
+                {{ repository.forks_count }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

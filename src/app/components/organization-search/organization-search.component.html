@@ -1,0 +1,12 @@
+<div class="searchbar-container">
+  <h2 *ngIf="this.router.url === '/'" class="organization-search-title">Search for repositories</h2>
+  <app-generic-searchbar
+    #orgSearch
+    placeholder="Organization"
+    [panelWidth]="searchbarPanelWidth"
+    [searchSubject]="organizationSubject"
+    (optionSelected)="chooseOrganization($event)"
+    [displayAvatar]="displayAvatarInSearchResults"
+  >
+  </app-generic-searchbar>
+</div>

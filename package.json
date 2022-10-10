@@ -3,19 +3,22 @@
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "node server.js",
+    "dev": "ng serve",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "heroku-postbuild": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
     "@angular-eslint/builder": "^14.1.2",
     "@angular/animations": "^14.2.0",
     "@angular/cdk": "^14.2.4",
+    "@angular/cli": "^14.2.5",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
     "@angular/core": "^14.2.0",
@@ -27,25 +30,28 @@
     "@angular/router": "^14.2.0",
     "@types/hogan.js": "^3.0.1",
     "diff2html": "^3.4.19",
+    "express": "^4.18.2",
     "ngx-infinite-scroll": "^14.0.0",
+    "path": "^0.12.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "typescript": "~4.7.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.5",
-    "@angular/cli": "~14.2.5",
+    "@angular/cli": "^14.2.5",
     "@angular/compiler-cli": "^14.2.0",
     "@cypress/schematic": "^2.1.1",
     "@types/jasmine": "~4.0.0",
+    "cypress": "latest",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.7.2",
-    "cypress": "latest"
+    "typescript": "~4.7.2"
   },
   "prettier": {
     "singleQuote": true,

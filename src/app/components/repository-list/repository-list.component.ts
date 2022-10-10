@@ -63,17 +63,15 @@ export class RepositoryListComponent implements OnInit {
   }
 
   getRepositories(): void {
-    this.githubService
-      .getRepositories(this.orgId, this.pageSize, this.pageIndex)
-      .subscribe({
-        next: (data: any) => {
-          this.organizationRepositories = data.body.sort(
-            (a: any, b: any) => b.stargazers_count - a.stargazers_count
-          )
-        },
-        error: (errorMessage: string) => {
-          this.emptyMessage = errorMessage;
-        },
-      });
+    this.githubService.getRepositories(this.orgId, this.pageSize, this.pageIndex).subscribe({
+      next: (data: any) => {
+        this.organizationRepositories = data.body.sort(
+          (a: any, b: any) => b.stargazers_count - a.stargazers_count
+        );
+      },
+      error: (errorMessage: string) => {
+        this.emptyMessage = errorMessage;
+      },
+    });
   }
 }

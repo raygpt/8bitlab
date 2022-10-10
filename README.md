@@ -3,6 +3,7 @@
 8bitlab is an 8-bit version of Gitlab built to demonstrate a simple, interactive UI for the Github API. It's not terribly pretty, and only mildly usable.
 
 See the running demo [here](https://eightbitlab.herokuapp.com/).
+
 ## Development server
 
 Clone the repository and run `npm i`.

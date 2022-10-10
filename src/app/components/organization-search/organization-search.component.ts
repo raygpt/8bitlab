@@ -17,7 +17,7 @@ export class OrganizationSearchComponent implements AfterViewInit, OnDestroy {
   public searchbarPanelWidth: string = '20rem';
   public displayAvatarInSearchResults: boolean = true;
 
-  constructor(private githubService: GithubService, public router: Router) { }
+  constructor(private githubService: GithubService, public router: Router) {}
 
   public ngAfterViewInit(): void {
     this.searchSubscription = this.organizationSubject

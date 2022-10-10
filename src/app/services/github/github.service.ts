@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class GithubService {
     accept: 'application/vnd.github+json',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   searchOrganizations(orgName: string): Observable<any> {
     return this.http.get(`https://api.github.com/search/users?q=${orgName}`, {
@@ -29,6 +29,10 @@ export class GithubService {
         headers: this.headers,
         observe: 'response',
       }
+    ).pipe(
+      catchError(error => {
+        return throwError(() => this.getServerErrorMessage(error));
+      })
     );
   }
 
@@ -42,6 +46,17 @@ export class GithubService {
     return this.http.get(
       `https://api.github.com/repos/${orgName}/${repositoryName}/commits?&page=${pageIndex}`,
       { headers: this.headers }
-    );
+    )
+  }
+
+  getServerErrorMessage(error: any): string {
+    switch (error.status) {
+      case 403:
+        return 'You have reached the maximum number of requests per hour. Please try again later.';
+      case 404:
+        return "Sorry, no repositories could be found for this organization.";
+      default:
+        return 'Something went wrong. Please try again later.';
+    }
   }
 }

@@ -8,7 +8,6 @@ import { GithubService } from 'src/app/services/github/github.service';
   styleUrls: ['./commit-list.component.css'],
 })
 export class CommitListComponent implements OnInit {
-  public orgNavBreadcrumb = '/organization';
   public orgId!: string;
   public orgName!: string;
   public repositoryName!: string;

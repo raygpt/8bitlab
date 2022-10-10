@@ -11,6 +11,7 @@ export class RepositoryListComponent implements OnInit {
   public orgId!: string;
   public orgName!: string;
   public avatarUrl!: string;
+  public emptyMessage!: string;
   public organizationRepositories: Array<any> = [];
   public totalRepos!: number;
   public pageIndex: number = 0;
@@ -38,7 +39,7 @@ export class RepositoryListComponent implements OnInit {
   }
 
   selectRepository(repositoryName: string): void {
-    this.router.navigate(['/commits'], {
+    this.router.navigate(['/repository'], {
       queryParams: {
         orgId: this.orgId,
         orgName: this.orgName,
@@ -64,10 +65,15 @@ export class RepositoryListComponent implements OnInit {
   getRepositories(): void {
     this.githubService
       .getRepositories(this.orgId, this.pageSize, this.pageIndex)
-      .subscribe((data: any) => {
-        this.organizationRepositories = data.body.sort(
-          (a: any, b: any) => b.stargazers_count - a.stargazers_count
-        );
+      .subscribe({
+        next: (data: any) => {
+          this.organizationRepositories = data.body.sort(
+            (a: any, b: any) => b.stargazers_count - a.stargazers_count
+          )
+        },
+        error: (errorMessage: string) => {
+          this.emptyMessage = errorMessage;
+        },
       });
   }
 }

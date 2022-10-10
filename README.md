@@ -30,7 +30,8 @@ Run `ng e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.i
 7. Added a Pull Requests tab on the Commits page.
 8. Built a custom backend that would have allowed me to paginate, sort and search through data in a way that would enable the frontend to consume the results of more complex queries without burdening itself with the processing.
 9. Defined complete Typescript interfaces for the API response types. The response types were large though and I figured it would be a better use of time to call this one out here.
-10. More unit tests. Due to the time-consuming nature of needing to import all Material components and services on the whole page (not just the ones on the component itself) into the component test file, I decided to just call this one out here too. I wrote an e2e test to make up for it.
+10. Better HTTP error handling.
+11. More unit tests. Due to the time-consuming nature of needing to import all Material components and services on the whole page (not just the ones on the component itself) into the component test file, I decided to just call this one out here too. I wrote an e2e test to make up for it.
 
 ### Observability
 

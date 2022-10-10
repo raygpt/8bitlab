@@ -17,7 +17,7 @@ export class OrganizationSearchComponent implements AfterViewInit, OnDestroy {
   public searchbarPanelWidth: string = '20rem';
   public displayAvatarInSearchResults: boolean = true;
 
-  constructor(private githubService: GithubService, public router: Router) {}
+  constructor(private githubService: GithubService, public router: Router) { }
 
   public ngAfterViewInit(): void {
     this.searchSubscription = this.organizationSubject
@@ -43,13 +43,15 @@ export class OrganizationSearchComponent implements AfterViewInit, OnDestroy {
   }
 
   chooseOrganization(organization: any): void {
-    this.router.navigate(['/organization'], {
-      queryParams: {
-        orgId: organization.orgId,
-        orgName: organization.displayName,
-        avatarUrl: organization.avatarUrl,
-      },
-      queryParamsHandling: 'merge',
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/organization'], {
+        queryParams: {
+          orgId: organization.orgId,
+          orgName: organization.displayName,
+          avatarUrl: organization.avatarUrl,
+        },
+        queryParamsHandling: 'merge',
+      });
     });
   }
 

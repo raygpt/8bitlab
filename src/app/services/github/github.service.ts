@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
@@ -51,7 +51,7 @@ export class GithubService {
     );
   }
 
-  getServerErrorMessage(error: any): string {
+  getServerErrorMessage(error: HttpErrorResponse): string {
     switch (error.status) {
       case 403:
         return 'You have reached the maximum number of requests per hour. Please try again later.';
